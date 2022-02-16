@@ -6,7 +6,9 @@ const packageJson = require('./package.json')
 
 const CLEAR_CACHE = 'clear-cache'
 
-timeExecution(main)
+main().catch(() => {
+  process.exitCode = 1
+})
 
 async function main() {
   const inputQuery = process.argv[2]
@@ -90,14 +92,4 @@ function getEnv() {
     docId,
     docTableName,
   }
-}
-
-function timeExecution(fn) {
-  const startMs = Date.now()
-
-  fn().finally(() => {
-    const endMs = Date.now()
-
-    console.error(`\n✨  Done in ${(endMs - startMs) / 1000}s.`)
-  })
 }
