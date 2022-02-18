@@ -2,10 +2,12 @@ const { execSync } = require('child_process')
 const { renameSync } = require('fs')
 const path = require('path')
 
+const packageJson = require('../package.json')
+
 main()
 
 function main() {
-  const executableName = 'alfred-coda-bookmarks'
+  const executableName = packageJson.name
   const command = [
     'pkg',
     '--target',
